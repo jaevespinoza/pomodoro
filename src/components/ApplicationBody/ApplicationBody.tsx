@@ -2,6 +2,8 @@ import { Grid, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import TimerOptions from "../Timer/TimerOptions";
 import CurrentTime from "../Timer/CurrentTime";
+import TimeInput from "../Timer/TimeInput";
+import StartStop from "../Timer/StartStop";
 
 const headerHeight = "50px";
 
@@ -46,10 +48,13 @@ const ApplicationBody = () => {
         className={classes.bodyDimensions}
         container
         direction="column"
+        wrap="nowrap"
         alignItems="center"
       >
         <TimerOptions />
         <CurrentTime />
+        <TimeInput />
+        <StartStop />
       </Grid>
     </Grid>
   );
