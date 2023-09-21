@@ -11,13 +11,17 @@ export interface IPomodoroState {
    * Option selected for the timer. It can be either working time,
    * short break, or a long break
    */
-  readonly option: TimerOption;
+  option: TimerOption;
   /**
    * Object that will hold each one of the assigned timers
    */
-  readonly timer: {
+  timer: {
     [key in TimerOption]: number;
   };
+  /**
+   * List of tasks that need to be finished
+   */
+  tasks: any[];
 }
 
 const pomodoroSlice = createSlice({
