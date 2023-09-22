@@ -84,6 +84,12 @@ const pomodoroSlice = createSlice({
     setTimerCount: (state, { payload }) => {
       state.timerCount = payload;
     },
+    /**
+     * Once any timer has completed, the state stops the timer
+     * and checks: if it's a pomodoro timer, it increases the count,
+     * and if a multiple of 4 timers have happened, the application switches to a long break.
+     * Otherwise, it switches to a short break.
+     */
     increaseTimerCountAfterPomodoro: (state) => {
       state.isPlaying = false;
       if (state.option === "work-timer") {

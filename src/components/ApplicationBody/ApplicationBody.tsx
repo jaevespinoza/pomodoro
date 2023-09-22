@@ -9,6 +9,12 @@ import { TimerOption } from "../../actions/PomodoroReducer";
 
 const headerHeight = "50px";
 
+/**
+ * Function that allows to set the color of the background
+ * depending on the type of break
+ * @param option The type of break
+ * @returns The background color
+ */
 const getColor = (option: TimerOption): string => {
   switch (option) {
     case "long-break":
@@ -22,6 +28,10 @@ const getColor = (option: TimerOption): string => {
   }
 };
 
+/**
+ * The application's body. This shall have all the components
+ * related to the application.
+ */
 const ApplicationBody = () => {
   const selectedOption = useSelector(
     (state: RootState) => state.pomodoro.option
@@ -41,7 +51,7 @@ const ApplicationBody = () => {
           alignItems="center"
         >
           <Grid item>
-            <Typography>Pomodoro!</Typography>
+            <Typography>Neural Clocks!</Typography>
           </Grid>
         </Grid>
       </Grid>

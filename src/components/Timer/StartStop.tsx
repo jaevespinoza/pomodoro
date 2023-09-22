@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../config/store";
 import { setIsPlaying } from "../../actions/PomodoroReducer";
 
+/**
+ * Button that starts or ends the timer. Depending on whether it's
+ * playing or not, it will show either "Stop" or "Start"
+ */
 const StartStop = () => {
   const dispatch = useDispatch();
   const isPlaying = useSelector((state: RootState) => state.pomodoro.isPlaying);

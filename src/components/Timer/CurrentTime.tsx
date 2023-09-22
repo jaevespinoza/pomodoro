@@ -8,7 +8,7 @@ type HexColor = [`#${string}`, `#${string}`, `#${string}`, `#${string}`];
 
 // Work Time Colors (HEX)
 const workTimeColorsHex: HexColor = [
-  "#00B894", // Focus Green
+  "#00B894",
   "#00B894",
   "#00B894",
   "#00B894",
@@ -16,7 +16,7 @@ const workTimeColorsHex: HexColor = [
 
 // Short Break Colors (HEX)
 const shortBreakColorsHex: HexColor = [
-  "#1ABC9C", // Relaxing Teal
+  "#1ABC9C",
   "#1ABC9C",
   "#1ABC9C",
   "#1ABC9C",
@@ -24,7 +24,7 @@ const shortBreakColorsHex: HexColor = [
 
 // Long Break Colors (HEX)
 const longBreakColorsHex: HexColor = [
-  "#6C5CE7", // Peaceful Lavender
+  "#6C5CE7",
   "#6C5CE7",
   "#6C5CE7",
   "#6C5CE7",
@@ -36,8 +36,14 @@ const colorsHex = {
   "long-break": longBreakColorsHex,
 };
 
+// Audio played once it's done
 const sfx = new Audio("./done.mp3");
 
+/**
+ * Circular progress bar that shows the amount of time
+ * left and a progression bar that depletes as the time comes to a close
+ * It uses the CountdownCircleTimer component from react-countdown-circle-timer
+ */
 const MinutesSecondsCountdown = () => {
   const optionSelected = useSelector(
     (state: RootState) => state.pomodoro.option

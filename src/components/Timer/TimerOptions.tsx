@@ -4,6 +4,10 @@ import { RootState } from "../../config/store";
 import { setOption } from "../../actions/PomodoroReducer";
 import "./styles.scss";
 
+/**
+ * Row component that shows the options the user has to select:
+ * Pomodoro timer, short break, or long break.
+ */
 const TimerOptions = () => {
   const selectedOption = useSelector(
     (state: RootState) => state.pomodoro.option
@@ -22,6 +26,7 @@ const TimerOptions = () => {
                 selectedOption === "work-timer"
                   ? "rgba(108, 122, 137, 0.8)"
                   : "none",
+              transition: "background-color 0.3s ease",
             }}
             variant="text"
             onClick={() => dispatch(setOption("work-timer"))}
@@ -45,6 +50,7 @@ const TimerOptions = () => {
                 selectedOption === "short-break"
                   ? "rgba(108, 122, 137, 0.8)"
                   : "none",
+              transition: "background-color 0.3s ease",
             }}
             onClick={() => dispatch(setOption("short-break"))}
           >
@@ -66,6 +72,7 @@ const TimerOptions = () => {
                 selectedOption === "long-break"
                   ? "rgba(108, 122, 137, 0.8)"
                   : "none",
+              transition: "background-color 0.3s ease",
             }}
             variant="text"
             onClick={() => dispatch(setOption("long-break"))}

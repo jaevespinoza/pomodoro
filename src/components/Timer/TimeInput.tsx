@@ -7,6 +7,11 @@ import {
   setWorkTimer,
 } from "../../actions/PomodoroReducer";
 
+/**
+ * Row component that has the inputs for each one of the
+ * timers (pomodoro, short timer and long timer). If it's already playing,
+ * it will be disabled so as to not disrupt the timer.
+ */
 const TimeInput = () => {
   const pomodoro = useSelector(
     (state: RootState) => state.pomodoro.timer["work-timer"]
