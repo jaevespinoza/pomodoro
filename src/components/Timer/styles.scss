@@ -1,0 +1,15 @@
+$primary-color: #1565c0;
+
+.bcontainer {
+  &__button {
+    background-color: $primary-color;
+    &--selected {
+      background-color: grey;
+    }
+    &__text {
+      &--selected {
+        color: white;
+      }
+    }
+  }
+}

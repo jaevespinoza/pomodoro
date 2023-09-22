@@ -9,25 +9,25 @@ type HexColor = [`#${string}`, `#${string}`, `#${string}`, `#${string}`];
 // Work Time Colors (HEX)
 const workTimeColorsHex: HexColor = [
   "#00B894", // Focus Green
-  "#E74C3C", // Energy Red
-  "#3498DB", // Calm Blue
-  "#FFA726", // Inspiration Orange
+  "#00B894",
+  "#00B894",
+  "#00B894",
 ];
 
 // Short Break Colors (HEX)
 const shortBreakColorsHex: HexColor = [
   "#1ABC9C", // Relaxing Teal
-  "#F1C40F", // Refresh Yellow
-  "#2ECC71", // Nature Green
-  "#9B59B6", // Mindful Purple
+  "#1ABC9C",
+  "#1ABC9C",
+  "#1ABC9C",
 ];
 
 // Long Break Colors (HEX)
 const longBreakColorsHex: HexColor = [
   "#6C5CE7", // Peaceful Lavender
-  "#2980B9", // Tranquil Blue
-  "#D35400", // Sunset Orange
-  "#FD79A8", // Harmony Pink
+  "#6C5CE7",
+  "#6C5CE7",
+  "#6C5CE7",
 ];
 
 const colorsHex = {
@@ -35,6 +35,8 @@ const colorsHex = {
   "short-break": shortBreakColorsHex,
   "long-break": longBreakColorsHex,
 };
+
+const sfx = new Audio("./done.mp3");
 
 const MinutesSecondsCountdown = () => {
   const optionSelected = useSelector(
@@ -49,7 +51,7 @@ const MinutesSecondsCountdown = () => {
     const seconds = remainingTime % 60;
 
     return (
-      <Typography variant="h3">{`${minutes}:${
+      <Typography variant="h3" sx={{ color: "white" }}>{`${minutes}:${
         seconds < 10 ? `0${seconds}` : seconds
       }`}</Typography>
     );
@@ -71,6 +73,7 @@ const MinutesSecondsCountdown = () => {
           15 * selectedValue,
         ]}
         onComplete={() => {
+          sfx.play();
           dispatch(increaseTimerCountAfterPomodoro());
         }}
       >

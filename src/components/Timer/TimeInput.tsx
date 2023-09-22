@@ -32,10 +32,10 @@ const TimeInput = () => {
     >
       <Grid>
         <Grid item container direction="column">
-          <Typography>Pomodoro (min)</Typography>
+          <Typography sx={{ color: "white" }}>Pomodoro (min)</Typography>
           <TextField
             disabled={isPlaying}
-            sx={{ width: "100px" }}
+            sx={{ width: "100px", backgroundColor: "white" }}
             value={pomodoro}
             onChange={(event) =>
               dispatch(setWorkTimer(event.currentTarget.value))
@@ -45,10 +45,10 @@ const TimeInput = () => {
       </Grid>
       <Grid>
         <Grid item container direction="column">
-          <Typography>Short break (min)</Typography>
+          <Typography sx={{ color: "white" }}>Short break (min)</Typography>
           <TextField
             disabled={isPlaying}
-            sx={{ width: "100px" }}
+            sx={{ width: "100px", backgroundColor: "white" }}
             value={shortBreak}
             onChange={(event) =>
               dispatch(setShortBreak(event.currentTarget.value))
@@ -58,10 +58,10 @@ const TimeInput = () => {
       </Grid>
       <Grid>
         <Grid item container direction="column">
-          <Typography>Long timer (min)</Typography>
+          <Typography sx={{ color: "white" }}>Long timer (min)</Typography>
           <TextField
             disabled={isPlaying}
-            sx={{ width: "100px" }}
+            sx={{ width: "100px", backgroundColor: "white" }}
             value={longBreak}
             onChange={(event) =>
               dispatch(setLongBreak(event.currentTarget.value))

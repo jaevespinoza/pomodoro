@@ -85,6 +85,7 @@ const pomodoroSlice = createSlice({
       state.timerCount = payload;
     },
     increaseTimerCountAfterPomodoro: (state) => {
+      state.isPlaying = false;
       if (state.option === "work-timer") {
         state.timerCount += 1;
         if (state.timerCount % 4 === 0) {
