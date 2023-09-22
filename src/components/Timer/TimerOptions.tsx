@@ -16,6 +16,7 @@ const TimerOptions = () => {
       <Grid container justifyContent="space-evenly">
         <Grid item>
           <Button
+            disableRipple
             sx={{
               backgroundColor:
                 selectedOption === "work-timer"
@@ -38,6 +39,7 @@ const TimerOptions = () => {
         <Grid item>
           <Button
             variant="text"
+            disableRipple
             sx={{
               backgroundColor:
                 selectedOption === "short-break"
@@ -58,6 +60,7 @@ const TimerOptions = () => {
         </Grid>
         <Grid item>
           <Button
+            disableRipple
             sx={{
               backgroundColor:
                 selectedOption === "long-break"
