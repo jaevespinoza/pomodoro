@@ -1,30 +1,39 @@
 import { Grid, Button, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-
-const TimerOptionsStyle = makeStyles({
-  buttonContainer: {
-    width: "50%",
-  },
-});
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../config/store";
+import { setOption } from "../../actions/PomodoroReducer";
 
 const TimerOptions = () => {
-  const classes = TimerOptionsStyle();
+  const selectedOption = useSelector(
+    (state: RootState) => state.pomodoro.option
+  );
+
+  const dispatch = useDispatch();
 
   return (
-    <Grid item className={classes.buttonContainer}>
+    <Grid item sx={{ width: "50%" }}>
       <Grid container justifyContent="space-evenly">
         <Grid item>
-          <Button variant="text">
+          <Button
+            variant="text"
+            onClick={() => dispatch(setOption("work-timer"))}
+          >
             <Typography>Pomodoro</Typography>
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="text">
+          <Button
+            variant="text"
+            onClick={() => dispatch(setOption("short-break"))}
+          >
             <Typography>Short break</Typography>
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="text">
+          <Button
+            variant="text"
+            onClick={() => dispatch(setOption("long-break"))}
+          >
             <Typography>Long break</Typography>
           </Button>
         </Grid>

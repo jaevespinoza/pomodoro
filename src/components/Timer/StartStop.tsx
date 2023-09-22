@@ -1,18 +1,22 @@
 import { Grid, Button, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-
-const styles = makeStyles({
-  body: {
-    marginTop: 20,
-  },
-});
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../config/store";
+import { setIsPlaying } from "../../actions/PomodoroReducer";
 
 const StartStop = () => {
-  const classes = styles();
+  const dispatch = useDispatch();
+  const isPlaying = useSelector((state: RootState) => state.pomodoro.isPlaying);
+
   return (
-    <Grid item className={classes.body}>
-      <Button variant="contained">
-        <Typography>Start</Typography>
+    <Grid item sx={{ marginTop: "20px" }}>
+      <Button
+        variant="contained"
+        disableFocusRipple
+        disableRipple
+        disableTouchRipple
+        onClick={() => dispatch(setIsPlaying(!isPlaying))}
+      >
+        <Typography>{isPlaying ? "Stop" : "Start"}</Typography>
       </Button>
     </Grid>
   );

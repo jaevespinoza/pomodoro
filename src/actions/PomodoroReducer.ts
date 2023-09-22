@@ -22,16 +22,26 @@ export interface IPomodoroState {
    * List of tasks that need to be finished
    */
   tasks: any[];
+  /**
+   * Boolean that handles the start of the timer
+   */
+  isPlaying: boolean;
+  /**
+   * Number of pomodoro timers that have passed
+   */
+  timerCount: number;
 }
 
 const pomodoroSlice = createSlice({
   name: "pomodoro",
   initialState: {
     option: "work-timer",
+    isPlaying: false,
+    timerCount: 0,
     timer: {
-      "work-timer": 0,
-      "short-break": 0,
-      "long-break": 0,
+      "work-timer": 25,
+      "short-break": 5,
+      "long-break": 15,
     },
   } as IPomodoroState,
   reducers: {
@@ -40,7 +50,7 @@ const pomodoroSlice = createSlice({
      * @param state Previous state of the application
      * @param payload The payload of the action dispatched
      */
-    setOption: (state, { payload }) => {
+    setOption: (state, { payload }: { payload: TimerOption }) => {
       state.option = payload;
     },
     /**
@@ -61,10 +71,40 @@ const pomodoroSlice = createSlice({
     setLongBreak: (state, { payload }) => {
       state.timer["long-break"] = payload;
     },
+    /**
+     * Action that will start or stop the timer
+     */
+    setIsPlaying: (state, { payload }) => {
+      state.isPlaying = payload;
+    },
+    /**
+     * Action that increases the amount of pomodoro timers that have
+     * passed
+     */
+    setTimerCount: (state, { payload }) => {
+      state.timerCount = payload;
+    },
+    increaseTimerCountAfterPomodoro: (state) => {
+      if (state.option === "work-timer") {
+        state.timerCount += 1;
+        if (state.timerCount % 4 === 0) {
+          state.option = "long-break";
+        } else state.option = "short-break";
+      } else {
+        state.option = "work-timer";
+      }
+    },
   },
 });
 
-export const { setOption, setWorkTimer, setShortBreak, setLongBreak } =
-  pomodoroSlice.actions;
+export const {
+  setOption,
+  setWorkTimer,
+  setShortBreak,
+  setLongBreak,
+  setTimerCount,
+  increaseTimerCountAfterPomodoro,
+  setIsPlaying,
+} = pomodoroSlice.actions;
 
 export default pomodoroSlice.reducer;
