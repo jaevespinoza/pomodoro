@@ -13,7 +13,7 @@ This is a Pomodoro Timer application built using React, Material-UI for componen
 
 Before you begin, ensure you have met the following requirements:
 
-- Node.js and npm installed on your development machine.
+- Node.js (v18.17.1) and yarn installed on your development machine.
 - Vite as your build tool.
 
 ## Getting Started
