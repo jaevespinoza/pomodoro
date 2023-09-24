@@ -1,7 +1,31 @@
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid, Button, Typography, styled } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../config/store";
-import { setIsPlaying } from "../../actions/PomodoroReducer";
+import { TimerOption, setIsPlaying } from "../../actions/PomodoroReducer";
+
+interface IPlayButton {
+  selectedOption: TimerOption;
+}
+
+const PlayButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "selectedOption",
+})<IPlayButton>(({ theme, selectedOption }) => ({
+  backgroundColor:
+    selectedOption === "work-timer"
+      ? theme.workTimer.button
+      : selectedOption === "short-break"
+      ? theme.shortBreak.button
+      : theme.longBreak.button,
+  "&:hover": {
+    filter: "brightness(85%)",
+    backgroundColor:
+      selectedOption === "work-timer"
+        ? theme.workTimer.button
+        : selectedOption === "short-break"
+        ? theme.shortBreak.button
+        : theme.longBreak.button,
+  },
+}));
 
 /**
  * Button that starts or ends the timer. Depending on whether it's
@@ -11,9 +35,14 @@ const StartStop = () => {
   const dispatch = useDispatch();
   const isPlaying = useSelector((state: RootState) => state.pomodoro.isPlaying);
 
+  const selectedOption = useSelector(
+    (state: RootState) => state.pomodoro.option
+  );
+
   return (
     <Grid item sx={{ marginTop: "20px" }}>
-      <Button
+      <PlayButton
+        selectedOption={selectedOption}
         variant="contained"
         disableFocusRipple
         disableRipple
@@ -21,7 +50,7 @@ const StartStop = () => {
         onClick={() => dispatch(setIsPlaying(!isPlaying))}
       >
         <Typography>{isPlaying ? "Stop" : "Start"}</Typography>
-      </Button>
+      </PlayButton>
     </Grid>
   );
 };

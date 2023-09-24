@@ -1,8 +1,9 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../config/store";
 import { increaseTimerCountAfterPomodoro } from "../../actions/PomodoroReducer";
+import StyledTypography from "../../shared/StyledTypography";
 
 type HexColor = [`#${string}`, `#${string}`, `#${string}`, `#${string}`];
 
@@ -48,6 +49,10 @@ const MinutesSecondsCountdown = () => {
   const optionSelected = useSelector(
     (state: RootState) => state.pomodoro.option
   );
+
+  const theme = useTheme();
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const timerValues = useSelector((state: RootState) => state.pomodoro.timer);
   const isPlaying = useSelector((state: RootState) => state.pomodoro.isPlaying);
   const dispatch = useDispatch();
@@ -57,19 +62,25 @@ const MinutesSecondsCountdown = () => {
     const seconds = remainingTime % 60;
 
     return (
-      <Typography variant="h3" sx={{ color: "white" }}>{`${minutes}:${
+      <StyledTypography variant="h3">{`${minutes}:${
         seconds < 10 ? `0${seconds}` : seconds
-      }`}</Typography>
+      }`}</StyledTypography>
     );
   };
 
   const selectedValue = timerValues[optionSelected];
 
   return (
-    <Grid item sx={{ marginTop: "20px" }}>
+    <Grid
+      item
+      sx={{
+        marginTop: "20px",
+      }}
+    >
       <CountdownCircleTimer
         key={optionSelected}
         isPlaying={isPlaying}
+        size={isMediumScreen ? 120 : 180}
         duration={timerValues[optionSelected] * 60}
         colors={colorsHex[optionSelected]}
         colorsTime={[

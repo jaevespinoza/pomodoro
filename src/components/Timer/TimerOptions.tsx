@@ -1,8 +1,10 @@
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../config/store";
-import { setOption } from "../../actions/PomodoroReducer";
+import { setIsPlaying, setOption } from "../../actions/PomodoroReducer";
 import "./styles.scss";
+import StyledButton from "../../shared/StyledButton";
+import StyledTypography from "../../shared/StyledTypography";
 
 /**
  * Row component that shows the options the user has to select:
@@ -19,73 +21,49 @@ const TimerOptions = () => {
     <Grid item sx={{ width: "50%" }}>
       <Grid container justifyContent="space-evenly">
         <Grid item>
-          <Button
+          <StyledButton
             disableRipple
-            sx={{
-              backgroundColor:
-                selectedOption === "work-timer"
-                  ? "rgba(108, 122, 137, 0.8)"
-                  : "none",
-              transition: "background-color 0.3s ease",
-            }}
+            isSelected={selectedOption === "work-timer"}
             variant="text"
-            onClick={() => dispatch(setOption("work-timer"))}
+            onClick={() => {
+              dispatch(setOption("work-timer"));
+              dispatch(setIsPlaying(false));
+            }}
           >
-            <Typography
-              sx={{
-                color: "white",
-                fontWeight: selectedOption === "work-timer" ? 600 : 400,
-              }}
-            >
+            <StyledTypography isSelected={selectedOption === "work-timer"}>
               Pomodoro
-            </Typography>
-          </Button>
+            </StyledTypography>
+          </StyledButton>
         </Grid>
         <Grid item>
-          <Button
+          <StyledButton
             variant="text"
+            isSelected={selectedOption === "short-break"}
             disableRipple
-            sx={{
-              backgroundColor:
-                selectedOption === "short-break"
-                  ? "rgba(108, 122, 137, 0.8)"
-                  : "none",
-              transition: "background-color 0.3s ease",
+            onClick={() => {
+              dispatch(setOption("short-break"));
+              dispatch(setIsPlaying(false));
             }}
-            onClick={() => dispatch(setOption("short-break"))}
           >
-            <Typography
-              sx={{
-                color: "white",
-                fontWeight: selectedOption === "short-break" ? 600 : 400,
-              }}
-            >
+            <StyledTypography isSelected={selectedOption === "short-break"}>
               Short break
-            </Typography>
-          </Button>
+            </StyledTypography>
+          </StyledButton>
         </Grid>
         <Grid item>
-          <Button
+          <StyledButton
             disableRipple
-            sx={{
-              backgroundColor:
-                selectedOption === "long-break"
-                  ? "rgba(108, 122, 137, 0.8)"
-                  : "none",
-              transition: "background-color 0.3s ease",
-            }}
+            isSelected={selectedOption === "long-break"}
             variant="text"
-            onClick={() => dispatch(setOption("long-break"))}
+            onClick={() => {
+              dispatch(setOption("long-break"));
+              dispatch(setIsPlaying(false));
+            }}
           >
-            <Typography
-              sx={{
-                color: "white",
-                fontWeight: selectedOption === "long-break" ? 600 : 400,
-              }}
-            >
+            <StyledTypography isSelected={selectedOption === "long-break"}>
               Long break
-            </Typography>
-          </Button>
+            </StyledTypography>
+          </StyledButton>
         </Grid>
       </Grid>
     </Grid>

@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Theme, Typography, useTheme } from "@mui/material";
 import TimerOptions from "../Timer/TimerOptions";
 import CurrentTime from "../Timer/CurrentTime";
 import TimeInput from "../Timer/TimeInput";
@@ -15,14 +15,14 @@ const headerHeight = "50px";
  * @param option The type of break
  * @returns The background color
  */
-const getColor = (option: TimerOption): string => {
+const getColor = (theme: Theme, option: TimerOption): string => {
   switch (option) {
     case "long-break":
-      return "#F7DC6F";
+      return theme.longBreak.color;
     case "short-break":
-      return "#FF6B6B";
+      return theme.shortBreak.color;
     case "work-timer":
-      return "#FF7675";
+      return theme.workTimer.color;
     default:
       return "";
   }
@@ -33,11 +33,12 @@ const getColor = (option: TimerOption): string => {
  * related to the application.
  */
 const ApplicationBody = () => {
+  const theme = useTheme();
   const selectedOption = useSelector(
     (state: RootState) => state.pomodoro.option
   );
   return (
-    <Grid container direction="column" sx={{ height: "100vh" }}>
+    <Grid container direction="column" sx={{ height: "100vh" }} wrap="nowrap">
       <Grid
         item
         sx={{ width: "100%", height: headerHeight, position: "sticky" }}
@@ -60,19 +61,26 @@ const ApplicationBody = () => {
         sx={{
           width: "100%",
           height: `calc(100% - ${headerHeight})`,
-          padding: "10px",
-          backgroundColor: getColor(selectedOption),
+          paddingTop: "10px",
+          paddingBottom: "10px",
+          backgroundColor: getColor(theme, selectedOption),
           transition: "background-color 0.3s ease",
         }}
         container
-        direction="column"
-        wrap="nowrap"
-        alignItems="center"
       >
-        <TimerOptions />
-        <CurrentTime />
-        <TimeInput />
-        <StartStop />
+        <Grid
+          item
+          container
+          direction="column"
+          wrap="nowrap"
+          alignItems="center"
+          sx={{ backgroundColor: "inherit" }}
+        >
+          <TimerOptions />
+          <CurrentTime />
+          <TimeInput />
+          <StartStop />
+        </Grid>
       </Grid>
     </Grid>
   );

@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography } from "@mui/material";
+import { Grid, TextField, styled } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../config/store";
 import {
@@ -6,6 +6,16 @@ import {
   setShortBreak,
   setWorkTimer,
 } from "../../actions/PomodoroReducer";
+import StyledTypography from "../../shared/StyledTypography";
+
+const StyledInput = styled(TextField)(({ theme }) => ({
+  width: "100px",
+  backgroundColor: "white",
+  borderRadius: "8px",
+  [theme.breakpoints.down("md")]: {
+    width: "75px",
+  },
+}));
 
 /**
  * Row component that has the inputs for each one of the
@@ -36,11 +46,10 @@ const TimeInput = () => {
       sx={{ width: "50%", marginTop: "20px" }}
     >
       <Grid>
-        <Grid item container direction="column">
-          <Typography sx={{ color: "white" }}>Pomodoro (min)</Typography>
-          <TextField
+        <Grid item container direction="column" alignItems="center">
+          <StyledTypography>Pomodoro (min)</StyledTypography>
+          <StyledInput
             disabled={isPlaying}
-            sx={{ width: "100px", backgroundColor: "white" }}
             value={pomodoro}
             onChange={(event) =>
               dispatch(setWorkTimer(event.currentTarget.value))
@@ -49,11 +58,10 @@ const TimeInput = () => {
         </Grid>
       </Grid>
       <Grid>
-        <Grid item container direction="column">
-          <Typography sx={{ color: "white" }}>Short break (min)</Typography>
-          <TextField
+        <Grid item container direction="column" alignItems="center">
+          <StyledTypography>Short break (min)</StyledTypography>
+          <StyledInput
             disabled={isPlaying}
-            sx={{ width: "100px", backgroundColor: "white" }}
             value={shortBreak}
             onChange={(event) =>
               dispatch(setShortBreak(event.currentTarget.value))
@@ -62,11 +70,10 @@ const TimeInput = () => {
         </Grid>
       </Grid>
       <Grid>
-        <Grid item container direction="column">
-          <Typography sx={{ color: "white" }}>Long timer (min)</Typography>
-          <TextField
+        <Grid item container direction="column" alignItems="center">
+          <StyledTypography>Long timer (min)</StyledTypography>
+          <StyledInput
             disabled={isPlaying}
-            sx={{ width: "100px", backgroundColor: "white" }}
             value={longBreak}
             onChange={(event) =>
               dispatch(setLongBreak(event.currentTarget.value))
