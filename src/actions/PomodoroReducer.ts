@@ -19,10 +19,6 @@ export interface IPomodoroState {
     [key in TimerOption]: number;
   };
   /**
-   * List of tasks that need to be finished
-   */
-  tasks: any[];
-  /**
    * Boolean that handles the start of the timer
    */
   isPlaying: boolean;
@@ -30,6 +26,14 @@ export interface IPomodoroState {
    * Number of pomodoro timers that have passed
    */
   timerCount: number;
+  /**
+   * Number of long break timers
+   */
+  longBreakCount: number;
+  /**
+   * Number of short break timers
+   */
+  shortBreakCount: number;
 }
 
 const pomodoroSlice = createSlice({
@@ -38,6 +42,8 @@ const pomodoroSlice = createSlice({
     option: "work-timer",
     isPlaying: false,
     timerCount: 0,
+    shortBreakCount: 0,
+    longBreakCount: 0,
     timer: {
       "work-timer": 25,
       "short-break": 5,
@@ -97,7 +103,11 @@ const pomodoroSlice = createSlice({
         if (state.timerCount % 4 === 0) {
           state.option = "long-break";
         } else state.option = "short-break";
+      } else if (state.option === "long-break") {
+        state.longBreakCount += 1;
+        state.option = "work-timer";
       } else {
+        state.shortBreakCount += 1;
         state.option = "work-timer";
       }
     },

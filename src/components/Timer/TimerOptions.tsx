@@ -15,6 +15,14 @@ const TimerOptions = () => {
     (state: RootState) => state.pomodoro.option
   );
 
+  const [longBreakCount, shortBreakCount, pomodoroCount] = useSelector(
+    (state: RootState) => [
+      state.pomodoro.longBreakCount,
+      state.pomodoro.shortBreakCount,
+      state.pomodoro.timerCount,
+    ]
+  );
+
   const dispatch = useDispatch();
 
   return (
@@ -31,7 +39,7 @@ const TimerOptions = () => {
             }}
           >
             <StyledTypography isSelected={selectedOption === "work-timer"}>
-              Pomodoro
+              {`Pomodoro (${pomodoroCount})`}
             </StyledTypography>
           </StyledButton>
         </Grid>
@@ -46,7 +54,7 @@ const TimerOptions = () => {
             }}
           >
             <StyledTypography isSelected={selectedOption === "short-break"}>
-              Short break
+              {`Short break (${shortBreakCount})`}
             </StyledTypography>
           </StyledButton>
         </Grid>
@@ -61,7 +69,7 @@ const TimerOptions = () => {
             }}
           >
             <StyledTypography isSelected={selectedOption === "long-break"}>
-              Long break
+              {`Long break (${longBreakCount})`}
             </StyledTypography>
           </StyledButton>
         </Grid>
