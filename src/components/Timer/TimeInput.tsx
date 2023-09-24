@@ -8,6 +8,10 @@ import {
 } from "../../actions/PomodoroReducer";
 import StyledTypography from "../../shared/StyledTypography";
 
+/**
+ * Styled input that will let us set breakpoints into
+ * the textfield component of material UI.
+ */
 const StyledInput = styled(TextField)(({ theme }) => ({
   width: "100px",
   backgroundColor: "white",

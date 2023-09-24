@@ -6,7 +6,11 @@ import { TimerOption, setIsPlaying } from "../../actions/PomodoroReducer";
 interface IPlayButton {
   selectedOption: TimerOption;
 }
-
+/**
+ * Styled button that will start or stop the timer.
+ * Things to improve:
+ * - Get rid of the ternary operation by using an easier to understand notation
+ */
 const PlayButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== "selectedOption",
 })<IPlayButton>(({ theme, selectedOption }) => ({

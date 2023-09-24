@@ -44,7 +44,7 @@ To get the Pomodoro Timer application up and running, follow these steps:
    yarn dev
    ```
 
-5. Open your web browser and access the application at `http://localhost:5137`.
+5. Open your web browser and access the application at `http://localhost:5173`.
 
 ## Usage
 

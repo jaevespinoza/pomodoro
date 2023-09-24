@@ -5,6 +5,8 @@ import { RootState } from "../../config/store";
 import { increaseTimerCountAfterPomodoro } from "../../actions/PomodoroReducer";
 import StyledTypography from "../../shared/StyledTypography";
 
+// Hex type that will allow us to have four hex strings
+// in the react-countdown-circle-time component (the component asks for 4 minimum)
 type HexColor = [`#${string}`, `#${string}`, `#${string}`, `#${string}`];
 
 // Work Time Colors (HEX)
@@ -31,6 +33,7 @@ const longBreakColorsHex: HexColor = [
   "#6C5CE7",
 ];
 
+// Dictionary object for easier access to the color hex arrays.
 const colorsHex = {
   "work-timer": workTimeColorsHex,
   "short-break": shortBreakColorsHex,
