@@ -37,6 +37,27 @@ const TimeInput = () => {
 
   const dispatch = useDispatch();
 
+  const content = [
+    {
+      title: "Pomodoro (min)",
+      value: pomodoro,
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+        dispatch(setWorkTimer(event.currentTarget.value)),
+    },
+    {
+      title: "Short break (min)",
+      value: shortBreak,
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+        dispatch(setShortBreak(event.currentTarget.value)),
+    },
+    {
+      title: "Long break (min)",
+      value: longBreak,
+      onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+        dispatch(setLongBreak(event.currentTarget.value)),
+    },
+  ];
+
   return (
     <Grid
       item
@@ -45,42 +66,20 @@ const TimeInput = () => {
       alignItems="center"
       sx={{ width: "50%", marginTop: "20px" }}
     >
-      <Grid>
-        <Grid item container direction="column" alignItems="center">
-          <StyledTypography>Pomodoro (min)</StyledTypography>
-          <StyledInput
-            disabled={isPlaying}
-            value={pomodoro}
-            onChange={(event) =>
-              dispatch(setWorkTimer(event.currentTarget.value))
-            }
-          />
-        </Grid>
-      </Grid>
-      <Grid>
-        <Grid item container direction="column" alignItems="center">
-          <StyledTypography>Short break (min)</StyledTypography>
-          <StyledInput
-            disabled={isPlaying}
-            value={shortBreak}
-            onChange={(event) =>
-              dispatch(setShortBreak(event.currentTarget.value))
-            }
-          />
-        </Grid>
-      </Grid>
-      <Grid>
-        <Grid item container direction="column" alignItems="center">
-          <StyledTypography>Long timer (min)</StyledTypography>
-          <StyledInput
-            disabled={isPlaying}
-            value={longBreak}
-            onChange={(event) =>
-              dispatch(setLongBreak(event.currentTarget.value))
-            }
-          />
-        </Grid>
-      </Grid>
+      {content.map((item) => {
+        return (
+          <Grid key={item.title}>
+            <Grid item container direction="column" alignItems="center">
+              <StyledTypography>{item.title}</StyledTypography>
+              <StyledInput
+                disabled={isPlaying}
+                value={item.value}
+                onChange={item.onChange}
+              />
+            </Grid>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };

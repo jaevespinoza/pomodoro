@@ -39,6 +39,12 @@ const StartStop = () => {
     (state: RootState) => state.pomodoro.option
   );
 
+  const timerValue = useSelector(
+    (state: RootState) => state.pomodoro.timer[selectedOption]
+  );
+
+  console.log(timerValue);
+
   return (
     <Grid item sx={{ marginTop: "20px" }}>
       <PlayButton
@@ -46,6 +52,7 @@ const StartStop = () => {
         variant="contained"
         disableFocusRipple
         disableRipple
+        disabled={timerValue.toString() === "0" || timerValue.toString() === ""}
         disableTouchRipple
         onClick={() => dispatch(setIsPlaying(!isPlaying))}
       >

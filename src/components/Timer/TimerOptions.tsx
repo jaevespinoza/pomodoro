@@ -9,6 +9,10 @@ import StyledTypography from "../../shared/StyledTypography";
 /**
  * Row component that shows the options the user has to select:
  * Pomodoro timer, short break, or long break.
+ *
+ * Things to improve:
+ * - Reduce code length by reusing components
+ * - Easier usage of styled components
  */
 const TimerOptions = () => {
   const selectedOption = useSelector(

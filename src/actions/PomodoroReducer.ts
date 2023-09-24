@@ -36,6 +36,9 @@ export interface IPomodoroState {
   shortBreakCount: number;
 }
 
+// Pattern that checks whether the input is a number and below than 60.
+const pattern: RegExp = /^$|^[0-9]$|^[1-5][0-9]$/;
+
 const pomodoroSlice = createSlice({
   name: "pomodoro",
   initialState: {
@@ -63,19 +66,19 @@ const pomodoroSlice = createSlice({
      * Action that will set the timer for the working time
      */
     setWorkTimer: (state, { payload }) => {
-      state.timer["work-timer"] = payload;
+      if (pattern.test(payload)) state.timer["work-timer"] = payload;
     },
     /**
      * Action that will set the timer for the short break
      */
     setShortBreak: (state, { payload }) => {
-      state.timer["short-break"] = payload;
+      if (pattern.test(payload)) state.timer["short-break"] = payload;
     },
     /**
      * Action that will set the timer for the long break
      */
     setLongBreak: (state, { payload }) => {
-      state.timer["long-break"] = payload;
+      if (pattern.test(payload)) state.timer["long-break"] = payload;
     },
     /**
      * Action that will start or stop the timer
