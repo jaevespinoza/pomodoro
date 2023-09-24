@@ -49,17 +49,27 @@ const sfx = new Audio("./done.mp3");
  * It uses the CountdownCircleTimer component from react-countdown-circle-timer
  */
 const MinutesSecondsCountdown = () => {
+  // We get the option currently selected.
   const optionSelected = useSelector(
     (state: RootState) => state.pomodoro.option
   );
 
   const theme = useTheme();
+  // We get the medium breakpoint from our theme to change the size
+  // of the component depending on it because it only receives a number
+  // to determine how big it is
+  // Another way of doing this would be by using css,but it would mean overriding
+  // the style.
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const timerValues = useSelector((state: RootState) => state.pomodoro.timer);
   const isPlaying = useSelector((state: RootState) => state.pomodoro.isPlaying);
   const dispatch = useDispatch();
 
+  /**
+   * Renderer function of the component. This shows the remaining time
+   * in the format mm:ss.
+   */
   const children = ({ remainingTime }: { remainingTime: number }) => {
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
