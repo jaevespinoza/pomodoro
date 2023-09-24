@@ -43,8 +43,6 @@ const StartStop = () => {
     (state: RootState) => state.pomodoro.timer[selectedOption]
   );
 
-  console.log(timerValue);
-
   return (
     <Grid item sx={{ marginTop: "20px" }}>
       <PlayButton
